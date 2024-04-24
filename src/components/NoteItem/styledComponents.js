@@ -1,1 +1,1 @@
-// Style your elements here
+import styled from 'styled-components'
