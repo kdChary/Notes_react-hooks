@@ -16,6 +16,7 @@ import {
   NotesInput,
   Container,
 } from './styledComponents'
+import NoteItem from '../NoteItem'
 
 const Notes = () => {
   const [title, setTitle] = useState('')
@@ -28,36 +29,43 @@ const Notes = () => {
   const addNotes = event => {
     setNotes(event.target.value)
   }
-  const updateArray = () => {
+  const updateArray = event => {
+    event.preventDefault()
     const noteArr = {title, notes, id: uuidV4()}
     setArray(prev => [...prev, noteArr])
+    setTitle('')
+    setNotes('')
   }
 
   return (
     <Container>
       <Heading>Notes</Heading>
-      <NotesInput>
+      <NotesInput name="notesForm" onSubmit={updateArray}>
         <Input
           type="text"
           name="title"
           placeholder="Title"
+          value={title}
           onChange={addTitle}
         />
 
         <Textarea
           name="note"
-          placeholder="Take a Note"
+          placeholder="Take a Note..."
           rows="2"
           cols="8"
+          value={notes}
           onChange={addNotes}
         />
 
-        <Button type="button" onClick={updateArray}>
-          Add
-        </Button>
+        <Button type="submit">Add</Button>
       </NotesInput>
       {allNotes.length ? (
-        <NotesList>Hello</NotesList>
+        <NotesList>
+          {allNotes.map(note => (
+            <NoteItem key={note.id} noteData={note} />
+          ))}
+        </NotesList>
       ) : (
         <NoNotesCard>
           <NoNotesImg

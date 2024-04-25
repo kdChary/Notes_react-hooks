@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // Styling container
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -17,22 +17,36 @@ const Container = styled.div`
 
   font-family: 'Roboto';
 `
-const NotesInput = styled.div`
-  width: 80%;
-  //   height: 210px;
+const NotesInput = styled.form`
+  width: 90%;
+  @media (min-width: 768px) {
+    width: 70%;
+  }
+  min-height: 174px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
-  box-shadow: 0 4px 12px 0 #cbd5e1;
-  padding: 13px;
-  margin-bottom: 7vh;
+  box-shadow: 0 5px 16px 0 #aab8c8;
+  padding: 11px;
+  margin-bottom: 23px;
+
+  border: solid 1.3px #fff;
+  border-radius: 7px;
 `
 const NotesList = styled.ul`
   padding-left: 0;
   list-style-type: none;
+  width: 95%;
 
   display: flex;
+  justify-content: center;
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+    width: 70%;
+  }
   flex-wrap: wrap;
+  gap: 5px;
 `
 
 // Styling Input and Text area.
@@ -77,6 +91,7 @@ const Heading = styled.h1`
 const Button = styled.button`
   align-self: flex-end;
   padding: 3px 9px;
+  margin-top: 9px;
 
   background: #4c63b6;
   border: solid 1px #4c63b6;
